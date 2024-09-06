@@ -1,6 +1,6 @@
-package com.dio.space.model.repository;
+package com.dio.space.domain.repository;
 
-import com.dio.space.model.ManagerAddresses;
+import com.dio.space.domain.model.ManagerAddresses;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ManagerAddressesRepository extends JpaRepository<ManagerAddresses, Long> {

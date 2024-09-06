@@ -1,10 +1,6 @@
 package com.dio.space.service;
 
-import com.dio.space.model.DTO.ManagerDTO;
-import com.dio.space.model.Manager;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import com.dio.space.domain.model.Manager;
 
 
 public interface ManagerService extends CrudService<Long, Manager> {

@@ -1,11 +1,9 @@
-package com.dio.space.model.DTO;
+package com.dio.space.controller.DTO;
 
-import com.dio.space.model.Manager;
-import com.dio.space.model.ManagerAddresses;
+import com.dio.space.domain.model.Manager;
+import com.dio.space.domain.model.ManagerAddresses;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 

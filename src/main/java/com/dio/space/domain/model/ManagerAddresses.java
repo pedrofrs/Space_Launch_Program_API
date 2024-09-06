@@ -1,4 +1,4 @@
-package com.dio.space.model;
+package com.dio.space.domain.model;
 
 import jakarta.persistence.*;
 

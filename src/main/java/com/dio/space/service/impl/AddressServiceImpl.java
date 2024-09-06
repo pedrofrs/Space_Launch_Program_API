@@ -1,10 +1,9 @@
 package com.dio.space.service.impl;
 
-import com.dio.space.model.DTO.AddressDTO;
+import com.dio.space.controller.DTO.AddressDTO;
 import com.dio.space.service.AddressService;
 
 import java.util.List;
-import java.util.Optional;
 
 public class AddressServiceImpl implements AddressService {
 

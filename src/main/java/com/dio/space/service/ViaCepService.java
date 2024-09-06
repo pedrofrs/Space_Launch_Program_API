@@ -1,6 +1,6 @@
 package com.dio.space.service;
 
-import com.dio.space.model.DTO.AddressDTO;
+import com.dio.space.controller.DTO.AddressDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

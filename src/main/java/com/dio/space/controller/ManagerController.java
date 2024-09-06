@@ -1,7 +1,7 @@
 package com.dio.space.controller;
 
-import com.dio.space.model.DTO.ManagerDTO;
-import com.dio.space.model.Manager;
+import com.dio.space.controller.DTO.ManagerDTO;
+import com.dio.space.domain.model.Manager;
 import com.dio.space.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
-package com.dio.space.model.repository;
+package com.dio.space.domain.repository;
 
-import com.dio.space.model.Manager;
-import com.dio.space.service.CrudService;
+import com.dio.space.domain.model.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

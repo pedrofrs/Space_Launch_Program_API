@@ -1,7 +1,6 @@
-package com.dio.space.model.repository;
+package com.dio.space.domain.repository;
 
-import com.dio.space.model.Address;
-import com.dio.space.model.DTO.AddressDTO;
+import com.dio.space.domain.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AddressRepository extends JpaRepository<Address,Long> {

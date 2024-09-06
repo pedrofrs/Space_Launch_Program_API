@@ -1,7 +1,7 @@
 package com.dio.space.service.impl;
 
-import com.dio.space.model.Manager;
-import com.dio.space.model.repository.ManagerRepository;
+import com.dio.space.domain.model.Manager;
+import com.dio.space.domain.repository.ManagerRepository;
 import com.dio.space.service.ManagerService;
 import com.dio.space.service.ViaCepService;
 import org.springframework.beans.factory.annotation.Autowired;

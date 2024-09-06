@@ -1,10 +1,6 @@
-package com.dio.space.model.DTO;
+package com.dio.space.controller.DTO;
 
-import com.dio.space.model.Address;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-
+import com.dio.space.domain.model.Address;
 
 
 public record AddressDTO(
