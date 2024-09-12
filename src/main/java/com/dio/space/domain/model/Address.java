@@ -2,6 +2,7 @@ package com.dio.space.domain.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,11 +16,20 @@ public class Address {
     private String neighborhood;
     private String city;
     private String state;
+    private String federativeUnit;
     private String region;
 
 
     @OneToMany(mappedBy = "address")
-    private Set<ManagerAddresses> managers;
+    private List<ManagerAddresses> managers;
+
+    public List<ManagerAddresses> getManagers() {
+        return managers;
+    }
+
+    public void setManagers(List<ManagerAddresses> managers) {
+        this.managers = managers;
+    }
 
     public int getId() {
         return id;
@@ -75,5 +85,13 @@ public class Address {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public String getFederativeUnit() {
+        return federativeUnit;
+    }
+
+    public void setFederativeUnit(String federativeUnit) {
+        this.federativeUnit = federativeUnit;
     }
 }

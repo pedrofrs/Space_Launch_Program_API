@@ -1,9 +1,9 @@
-package com.dio.space.controller.DTO;
+package com.dio.space.service.api.apidto;
 
 import com.dio.space.domain.model.Address;
 
 
-public record AddressDTO(
+public record AddressApiDto(
         String cep,
         String logradouro,
         String complemento,
@@ -17,7 +17,7 @@ public record AddressDTO(
         String gia,
         String ddd) {
 
-    public AddressDTO(Address address) {
+    public AddressApiDto(Address address) {
         this(
                 address.getPostalCode(),
                 address.getStreet(),
@@ -27,7 +27,7 @@ public record AddressDTO(
                 address.getCity(),
                 address.getState(),
                 address.getRegion(),
-                null,
+                address.getFederativeUnit(),
                 null,
                 null,
                 null
@@ -43,6 +43,7 @@ public record AddressDTO(
         address.setCity(this.localidade);
         address.setRegion(this.regiao);
         address.setState(this.estado);
+        address.setFederativeUnit(this.uf);
         return address;
     }
 

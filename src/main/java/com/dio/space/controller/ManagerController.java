@@ -1,7 +1,6 @@
 package com.dio.space.controller;
 
-import com.dio.space.controller.DTO.ManagerDTO;
-import com.dio.space.domain.model.Manager;
+import com.dio.space.controller.dto.ManagerDto;
 import com.dio.space.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,42 +19,38 @@ public class ManagerController {
     private ManagerService managerServiceImplement;
 
     @GetMapping("/all")
-    public ResponseEntity<List<ManagerDTO>> getAll() {
+    public ResponseEntity<List<ManagerDto>> getAll() {
         var managers = managerServiceImplement.findAll();
-        List<ManagerDTO> managerDTO = managers.stream().map(ManagerDTO::new)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(managerDTO);
+        return ResponseEntity.ok(managers);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ManagerDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<ManagerDto> getById(@PathVariable Long id) {
         var manager = managerServiceImplement.findById(id);
-        return ResponseEntity.ok(new ManagerDTO(manager));
+        return ResponseEntity.ok(manager);
     }
 
     @PostMapping
-    public ResponseEntity<ManagerDTO> create (@RequestBody ManagerDTO managerDTO) {
-        var manager = managerDTO.toManager();
-        managerServiceImplement.create(manager);
+    public ResponseEntity<ManagerDto> create (@RequestBody ManagerDto managerDTO) {
+        ManagerDto managerDtoResponse = managerServiceImplement.create(managerDTO);
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(manager.getId())
+                .buildAndExpand(managerDtoResponse.toManager().getId())
                 .toUri();
-        return ResponseEntity.created(location).body(new ManagerDTO(manager));
+        return ResponseEntity.created(location).body(managerDtoResponse);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ManagerDTO> update(@PathVariable Long id, @RequestBody ManagerDTO managerDTO) {
+    public ResponseEntity<ManagerDto> update(@PathVariable Long id, @RequestBody ManagerDto managerDTO) {
         try {
             var manager = managerDTO.toManager();
-            Manager updatedManager = managerServiceImplement.update(id, manager);
+            ManagerDto updatedManager = managerServiceImplement.update(id, managerDTO);
             return ResponseEntity.ok(managerDTO);
 
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
-
-
     }
 
     @DeleteMapping("/{id}")

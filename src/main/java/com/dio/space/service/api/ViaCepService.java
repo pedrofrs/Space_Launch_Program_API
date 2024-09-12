@@ -1,6 +1,6 @@
-package com.dio.space.service;
+package com.dio.space.service.api;
 
-import com.dio.space.controller.DTO.AddressDTO;
+import com.dio.space.service.api.apidto.AddressApiDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ViaCepService {
 
     @GetMapping("/{cep}/json/")
-    AddressDTO getCep(@PathVariable("cep") String cep);
+    AddressApiDto getCep(@PathVariable("cep") String cep);
 
 }

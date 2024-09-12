@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,14 +37,13 @@ public class Manager {
     private LocalDateTime insertionDate;
 
     @OneToMany(mappedBy = "manager")
-    private Set<ManagerAddresses> addresses;
+    private List<ManagerAddresses> addresses;
 
-
-    public Set<ManagerAddresses> getAddresses() {
+    public List<ManagerAddresses> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Set<ManagerAddresses> addresses) {
+    public void setAddresses(List<ManagerAddresses> addresses) {
         this.addresses = addresses;
     }
 
@@ -105,15 +105,15 @@ public class Manager {
 
 
     //    @JsonManagedReference
-//    public List<AddressDTO> getAddresses() {
+//    public List<AddressApiDto> getAddresses() {
 //        return addressDTOS;
 //    }
 //
-//    public void setAddresses(List<AddressDTO> addressDTOS) {
+//    public void setAddresses(List<AddressApiDto> addressDTOS) {
 //        this.addressDTOS = addressDTOS;
 //    }
 //
-//    public void setAddress(AddressDTO addressDTO){
+//    public void setAddress(AddressApiDto addressDTO){
 //        this.addressDTOS.add(addressDTO);
 //    }
 }
