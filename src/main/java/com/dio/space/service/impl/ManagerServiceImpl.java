@@ -22,8 +22,6 @@ import java.util.stream.Collectors;
 @Service
 public class ManagerServiceImpl implements ManagerService {
 
-    //Add exceptions
-
     @Autowired
     private ManagerRepository managerRepository;
     @Autowired
@@ -89,24 +87,20 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ManagerDto update(Long id, ManagerDto managerDto) {
-        // Verifica se o Manager existe
+
         Manager existingManager = managerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Manager not found with id: " + id));
 
-        // Atualiza os campos do Manager
         existingManager.setFirstName(managerDto.firstName());
         existingManager.setLastName(managerDto.lastName());
         existingManager.setEmail(managerDto.email());
         existingManager.setAge(managerDto.age());
         existingManager.setCredential(managerDto.credential());
 
-        // Atualiza o Manager no banco de dados
         managerRepository.save(existingManager);
 
-        // Lista para acumular endereços atualizados
         List<AddressDto> addressResponseList = new ArrayList<>();
 
-        // Processa e salva os endereços
         for (AddressDto managerCep : managerDto.addresses()) {
             Address address = viaCepService.getCep(managerCep.postalCode()).toAddress();
             Address existingAddress = addressRepository.findByPostalCode(address.getPostalCode());

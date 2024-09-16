@@ -1,9 +1,8 @@
 package com.dio.space.service;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface CrudService <ID, T> {
+public interface CrudService <T, ID> {
     List<T> findAll();
     T findById(ID id);
     T create(T entity);

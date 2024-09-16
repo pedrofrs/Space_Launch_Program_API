@@ -32,7 +32,7 @@ public class Manager {
     @NotNull
     private int credential;
 
-    @Column(name = "insertion_date")
+    @Column(name = "insertion_date",  updatable = false)
     @NotNull
     private LocalDateTime insertionDate;
 

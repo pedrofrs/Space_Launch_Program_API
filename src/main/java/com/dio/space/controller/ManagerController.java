@@ -9,10 +9,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/manager")  // Corrigido o caminho para "/manager"
+@RequestMapping("/managers")
 public class ManagerController {
 
     @Autowired
@@ -32,7 +31,7 @@ public class ManagerController {
 
     @PostMapping
     public ResponseEntity<ManagerDto> create (@RequestBody ManagerDto managerDTO) {
-        ManagerDto managerDtoResponse = managerServiceImplement.create(managerDTO);
+        var managerDtoResponse = managerServiceImplement.create(managerDTO);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
