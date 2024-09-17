@@ -39,7 +39,7 @@ public class Rocket {
     @Column(name = "second_stage_fuel", nullable = false)
     private double secondStageFuel;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 600)
     private String description;
 
     @Column(name = "active", nullable = false)
