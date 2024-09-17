@@ -28,10 +28,4 @@ public class RocketController {
         return ResponseEntity.ok(rocket);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<RocketDto> getRocketByName(@PathVariable("name") String name) {
-        var rocket = rocketService.getByName(name);
-        return ResponseEntity.ok(rocket);
-    }
-
 }

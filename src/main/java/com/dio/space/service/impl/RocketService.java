@@ -29,14 +29,5 @@ public class RocketService {
                 .orElseThrow(() -> new NotFoundException("Rocket not found in the database.")));
         return rocketDto;
     }
-    @Transactional(readOnly = true)
-    public RocketDto getByName(String name){
-        RocketDto rocketDto = new RocketDto(rocketRepository.findByName(name));
-        if (rocketDto == null){
-            throw new NotFoundException("Rocket not found in the database.");
-        }
-        return rocketDto;
-    }
-
 
 }

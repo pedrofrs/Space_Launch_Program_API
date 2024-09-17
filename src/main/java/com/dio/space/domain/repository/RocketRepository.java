@@ -8,5 +8,4 @@ import java.util.UUID;
 @Repository
 public interface RocketRepository extends JpaRepository<Rocket, String> {
 
-    Rocket findByName(String name);
 }
