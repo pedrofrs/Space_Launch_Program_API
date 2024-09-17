@@ -30,13 +30,15 @@ public class ManagerController {
     }
 
     @PostMapping
-    public ResponseEntity<ManagerDto> create (@RequestBody ManagerDto managerDTO) {
+    public ResponseEntity<ManagerDto> create(@RequestBody ManagerDto managerDTO) {
         var managerDtoResponse = managerServiceImplement.create(managerDTO);
 
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand()
+                .path("/{email}")
+                .buildAndExpand(managerDtoResponse.email())
                 .toUri();
+
         return ResponseEntity.created(location).body(managerDtoResponse);
     }
 
