@@ -35,7 +35,7 @@ public class ManagerController {
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(managerDtoResponse.toManager().getId())
+                .buildAndExpand()
                 .toUri();
         return ResponseEntity.created(location).body(managerDtoResponse);
     }

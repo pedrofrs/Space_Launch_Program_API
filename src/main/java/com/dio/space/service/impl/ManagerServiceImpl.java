@@ -97,7 +97,7 @@ public class ManagerServiceImpl implements ManagerService {
         existingManager.setAge(managerDto.age());
         existingManager.setCredential(managerDto.credential());
 
-        managerRepository.save(existingManager);
+        Manager ManagerDb = managerRepository.save(existingManager);
 
         List<AddressDto> addressResponseList = new ArrayList<>();
 
@@ -122,14 +122,7 @@ public class ManagerServiceImpl implements ManagerService {
             addressResponseList.add(addressDto);
         }
 
-        return new ManagerDto(
-                existingManager.getFirstName(),
-                existingManager.getLastName(),
-                existingManager.getEmail(),
-                existingManager.getAge(),
-                existingManager.getCredential(),
-                addressResponseList
-        );
+        return new ManagerDto(ManagerDb);
     }
 
     @Override
