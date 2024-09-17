@@ -10,6 +10,7 @@ import com.dio.space.service.exception.NotFoundException;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,20 +28,21 @@ public class PayloadServiceImpl implements PayloadService {
     SpaceXService spaceXService;
 
 
-    @Override
+    @Transactional(readOnly = true)
     public List<PayloadDto> findAll() {
         return payloadRepository.findAll()
                 .stream()
                 .map(PayloadDto::new).collect(Collectors.toList());
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public PayloadDto findById(Long id ) {
         return payloadRepository.findById(id)
                 .map(PayloadDto::new)
                 .orElseThrow(() -> new NotFoundException("Payload not found"));
     }
 
+    @Transactional
     public PayloadDto create(PayloadDto payloadDto) {
         if (payloadDto.id() != null) {
             try {
@@ -70,7 +72,7 @@ public class PayloadServiceImpl implements PayloadService {
         }
     }
 
-    @Override
+    @Transactional
     public PayloadDto update(Long id, PayloadDto payloadDto) {
         Payload payload = payloadRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Manager not found with id: " + id));
@@ -88,7 +90,7 @@ public class PayloadServiceImpl implements PayloadService {
         return  new PayloadDto(payload);
     }
 
-    @Override
+    @Transactional
     public void delete(Long id) {
         if (!payloadRepository.existsById(id)) {
             throw new NotFoundException("Payload not found");

@@ -19,6 +19,7 @@ import feign.FeignException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,19 +44,19 @@ public class MissionServiceImpl {
     @Autowired
     ManagerRepository managerRepository;
 
-
+    @Transactional(readOnly = true)
     public List<MissionResponseDto> findAll() {
         return missionRepository.findAll().stream().map(MissionResponseDto::new).collect(Collectors.toList());
     }
 
-
+    @Transactional(readOnly = true)
     public MissionResponseDto findById(Long id) {
 
         return new MissionResponseDto(missionRepository.findById(id).
                 orElseThrow(() -> new NotFoundException("Mission not found.")));
     }
 
-
+    @Transactional
     public MissionResponseDto create(MissionRequestDto missionRequestDto) {
 
         Payload payload = payloadRepository.findById(missionRequestDto.payloadId()).get();

@@ -13,6 +13,7 @@ import com.dio.space.service.api.ViaCepService;
 import com.dio.space.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,21 +32,21 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired
     private ViaCepService viaCepService;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<ManagerDto> findAll() {
         return managerRepository.findAll().stream()
                 .map(ManagerDto::new)
                 .collect(Collectors.toList());
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public ManagerDto findById(Long id) {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Manager not found with id: " + id));
         return new ManagerDto(manager);
     }
 
-    @Override
+    @Transactional
     public ManagerDto create(ManagerDto managerDto) {
 
         Manager manager = managerDto.toManager();
@@ -85,7 +86,7 @@ public class ManagerServiceImpl implements ManagerService {
         return managerDtoResponse;
     }
 
-    @Override
+    @Transactional
     public ManagerDto update(Long id, ManagerDto managerDto) {
 
         Manager existingManager = managerRepository.findById(id)
@@ -125,7 +126,7 @@ public class ManagerServiceImpl implements ManagerService {
         return new ManagerDto(ManagerDb);
     }
 
-    @Override
+    @Transactional
     public void delete(Long id) {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Manager not found with id: " + id));
