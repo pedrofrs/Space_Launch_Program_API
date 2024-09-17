@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PayloadRepository extends JpaRepository<Payload, Long> {
+    Payload findByName(String name);
 }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
@@ -42,9 +43,13 @@ public class PayloadServiceImpl implements PayloadService {
                 .orElseThrow(() -> new NotFoundException("Payload not found"));
     }
 
-    @Transactional
     public PayloadDto create(PayloadDto payloadDto) {
         if (payloadDto.id() != null) {
+            Optional<Payload> existingPayload = Optional.ofNullable(payloadRepository.findByName(payloadDto.name()));
+            if (existingPayload.isPresent()) {
+                throw new BusinessException("Payload with the same ID already exists.");
+            }
+
             try {
                 Payload payloadApi = spaceXService.getPayload(payloadDto.id()).toPayload();
                 payloadApi.setCreatedAt(LocalDateTime.now());
